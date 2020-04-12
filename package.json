@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/EnricoMassoneDeltatre/pet-adoption-app/issues"
   },
-  "homepage": "https://github.com/EnricoMassoneDeltatre/pet-adoption-app#readme"
+  "homepage": "https://github.com/EnricoMassoneDeltatre/pet-adoption-app#readme",
+  "devDependencies": {
+    "prettier": "^2.0.4"
+  }
 }

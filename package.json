@@ -1,0 +1,20 @@
+{
+  "name": "pet-adoption",
+  "version": "1.0.0",
+  "description": "Sample reactjs application inspired by the [frontend masters](https://frontendmasters.com/dashboard/) course [complete intro to react V4](https://frontendmasters.com/courses/complete-react-v4/).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnricoMassoneDeltatre/pet-adoption-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnricoMassoneDeltatre/pet-adoption-app/issues"
+  },
+  "homepage": "https://github.com/EnricoMassoneDeltatre/pet-adoption-app#readme"
+}

@@ -4,7 +4,9 @@
   "description": "Sample reactjs application inspired by the [frontend masters](https://frontendmasters.com/dashboard/) course [complete intro to react V4](https://frontendmasters.com/courses/complete-react-v4/).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.{js,jsx,css,html,json}\"",
+    "format:check": "prettier --list-different \"src/**/*.{js,jsx,css,html,json}\""
   },
   "repository": {
     "type": "git",

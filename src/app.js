@@ -1,3 +1,6 @@
+import React from "react";
+import { render } from "react-dom";
+
 const Pet = (props) => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, props.name),
@@ -8,7 +11,7 @@ const Pet = (props) => {
 
 class App extends React.Component {
   handleClick() {
-    alert("Hello from pet adoption application!");
+    alert("You clicked the title");
   }
 
   render() {
@@ -34,4 +37,4 @@ class App extends React.Component {
 }
 
 const root = document.getElementById("root");
-ReactDOM.render(React.createElement(App), root);
+render(React.createElement(App), root);

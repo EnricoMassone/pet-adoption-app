@@ -13,6 +13,7 @@ class Results extends React.Component {
 
     this.state = {
       pets: [],
+      isLoading: true,
     };
   }
 
@@ -33,33 +34,41 @@ class Results extends React.Component {
 
       this.setState({
         pets,
+        isLoading: false,
       });
     });
   }
 
   render() {
+    const { isLoading } = this.state;
     return (
       <div className="search">
-        {this.state.pets.map((pet) => {
-          let breed;
+        {isLoading ? (
+          <h2>Loading...</h2>
+        ) : this.state.pets.length ? (
+          this.state.pets.map((pet) => {
+            let breed;
 
-          if (Array.isArray(pet.breeds.breed)) {
-            breed = pet.breeds.breed.join(", ");
-          } else {
-            breed = pet.breeds.breed;
-          }
+            if (Array.isArray(pet.breeds.breed)) {
+              breed = pet.breeds.breed.join(", ");
+            } else {
+              breed = pet.breeds.breed;
+            }
 
-          return (
-            <Pet
-              key={pet.id}
-              animal={pet.animal}
-              breed={breed}
-              name={pet.name}
-              media={pet.media}
-              location={`${pet.contact.city}, ${pet.contact.state}`}
-            />
-          );
-        })}
+            return (
+              <Pet
+                key={pet.id}
+                animal={pet.animal}
+                breed={breed}
+                name={pet.name}
+                media={pet.media}
+                location={`${pet.contact.city}, ${pet.contact.state}`}
+              />
+            );
+          })
+        ) : (
+          <h2>No pets found</h2>
+        )}
       </div>
     );
   }

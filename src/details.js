@@ -1,5 +1,6 @@
 import React from "react";
 import petfinder from "petfinder-client";
+import Carousel from "./carousel";
 
 const api = petfinder({
   key: process.env.API_KEY,
@@ -52,10 +53,11 @@ class Details extends React.Component {
       );
     }
 
-    const { name, animal, breed, description, location } = this.state;
+    const { name, animal, breed, description, location, media } = this.state;
 
     return (
       <div className="details">
+        <Carousel media={media} />
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} - ${breed} - ${location}`}</h2>

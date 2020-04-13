@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Router } from "@reach/router";
 import Results from "./results";
+import Details from "./details";
 
 class App extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class App extends React.Component {
         <h1>Adopt me</h1>
         <Router>
           <Results path="/" />
+          <Details path="/details/:id" />
         </Router>
       </div>
     );

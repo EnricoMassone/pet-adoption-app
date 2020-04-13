@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
+import { Router } from "@reach/router";
 import Results from "./results";
 
 class App extends React.Component {
@@ -7,7 +8,9 @@ class App extends React.Component {
     return (
       <div>
         <h1>Adopt me</h1>
-        <Results />
+        <Router>
+          <Results path="/" />
+        </Router>
       </div>
     );
   }

@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 class Pet extends React.Component {
   render() {
-    const { name, animal, breed, location, media } = this.props;
+    const { name, animal, breed, location, media, id } = this.props;
 
     let photos = [];
     if (media && media.photos && media.photos.photo) {
@@ -10,7 +11,7 @@ class Pet extends React.Component {
     }
 
     return (
-      <div className="pet">
+      <Link to={`/details/${id}`} className="pet">
         <div className="image-container">
           <img alt={name} src={photos[0].value} />
         </div>
@@ -18,7 +19,7 @@ class Pet extends React.Component {
           <h1>{name}</h1>
           <h2>{`${animal} - ${breed} - ${location}`}</h2>
         </div>
-      </div>
+      </Link>
     );
   }
 }

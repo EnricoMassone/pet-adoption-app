@@ -133,6 +133,11 @@ header {
   width: 325px;
 }
 
+.search-params select:disabled {
+  background-color: #d5d4d4;
+  cursor: not-allowed;
+}
+
 .search-params button,
 #modal button,
 .details button {

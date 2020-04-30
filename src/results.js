@@ -14,7 +14,7 @@ class Results extends React.Component {
     isLoading: true,
   };
 
-  searchPets = () => {
+  searchPets() {
     const promise = api.pet.find({ output: "full", location: "Seattle, WA" });
     promise.then((data) => {
       let pets;
@@ -34,6 +34,17 @@ class Results extends React.Component {
         isLoading: false,
       });
     });
+  }
+
+  handleSearchFormSubmit = (event) => {
+    event.preventDefault();
+
+    this.setState(
+      {
+        isLoading: true,
+      },
+      this.searchPets
+    );
   };
 
   componentDidMount() {
@@ -53,7 +64,7 @@ class Results extends React.Component {
 
     return (
       <div className="search">
-        <SearchBox />
+        <SearchBox onSearch={this.handleSearchFormSubmit} />
         {this.state.pets.length ? (
           this.state.pets.map((pet) => {
             let breed;

@@ -2,6 +2,7 @@ import React from "react";
 import Pet from "./pet";
 import petfinder from "petfinder-client";
 import SearchBox from "./searchBox";
+import { Consumer } from "./searchContext";
 
 const api = petfinder({
   key: process.env.API_KEY,
@@ -15,7 +16,16 @@ class Results extends React.Component {
   };
 
   searchPets() {
-    const promise = api.pet.find({ output: "full", location: "Seattle, WA" });
+    const { location, animal, breed } = this.props;
+    console.log(location, animal, breed);
+
+    const promise = api.pet.find({
+      output: "full",
+      location,
+      animal,
+      breed,
+    });
+
     promise.then((data) => {
       let pets;
 
@@ -95,4 +105,18 @@ class Results extends React.Component {
   }
 }
 
-export default Results;
+function ResultsWithConsumer() {
+  return (
+    <Consumer>
+      {(context) => (
+        <Results
+          location={context.location}
+          animal={context.animal}
+          breed={context.breed}
+        />
+      )}
+    </Consumer>
+  );
+}
+
+export default ResultsWithConsumer;

@@ -13,16 +13,20 @@ const apiClient = petfinder({
 });
 
 class App extends React.Component {
-  state = {
-    location: "Seattle, WA",
-    animal: "",
-    breed: "",
-    breeds: [],
-    handleLocationChange: this.handleLocationChange,
-    handleAnimalChange: this.handleAnimalChange,
-    handleBreedChange: this.handleBreedChange,
-    getBreeds: this.getBreeds,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      location: "Seattle, WA",
+      animal: "",
+      breed: "",
+      breeds: [],
+      handleLocationChange: this.handleLocationChange,
+      handleAnimalChange: this.handleAnimalChange,
+      handleBreedChange: this.handleBreedChange,
+      getBreeds: this.getBreeds,
+    };
+  }
 
   handleLocationChange = (event) => {
     this.setState({

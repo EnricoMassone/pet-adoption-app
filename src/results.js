@@ -1,6 +1,7 @@
 import React from "react";
 import Pet from "./pet";
 import petfinder from "petfinder-client";
+import SearchBox from "./searchBox";
 
 const api = petfinder({
   key: process.env.API_KEY,
@@ -8,16 +9,12 @@ const api = petfinder({
 });
 
 class Results extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    pets: [],
+    isLoading: true,
+  };
 
-    this.state = {
-      pets: [],
-      isLoading: true,
-    };
-  }
-
-  componentDidMount() {
+  searchPets = () => {
     const promise = api.pet.find({ output: "full", location: "Seattle, WA" });
     promise.then((data) => {
       let pets;
@@ -37,15 +34,27 @@ class Results extends React.Component {
         isLoading: false,
       });
     });
+  };
+
+  componentDidMount() {
+    this.searchPets();
   }
 
   render() {
     const { isLoading } = this.state;
+
+    if (isLoading) {
+      return (
+        <div className="search">
+          <h2>Loading...</h2>
+        </div>
+      );
+    }
+
     return (
       <div className="search">
-        {isLoading ? (
-          <h2>Loading...</h2>
-        ) : this.state.pets.length ? (
+        <SearchBox />
+        {this.state.pets.length ? (
           this.state.pets.map((pet) => {
             let breed;
 

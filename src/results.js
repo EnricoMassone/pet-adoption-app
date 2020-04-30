@@ -46,9 +46,7 @@ class Results extends React.Component {
     });
   }
 
-  handleSearchFormSubmit = (event) => {
-    event.preventDefault();
-
+  handleSearchFormSubmit = () => {
     this.setState(
       {
         isLoading: true,

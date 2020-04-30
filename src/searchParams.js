@@ -3,8 +3,7 @@ import SearchBox from "./searchBox";
 import { navigate } from "@reach/router";
 
 class SearchParams extends React.Component {
-  handleSearchFormSubmit(event) {
-    event.preventDefault();
+  handleSearchFormSubmit() {
     navigate("/");
   }
 

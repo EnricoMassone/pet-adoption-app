@@ -1,6 +1,7 @@
 import React from "react";
 import petfinder from "petfinder-client";
 import Carousel from "./carousel";
+import Modal from "./modal";
 
 const api = petfinder({
   key: process.env.API_KEY,
@@ -10,6 +11,7 @@ const api = petfinder({
 class Details extends React.Component {
   state = {
     loading: true,
+    showModal: false,
   };
 
   componentDidMount() {
@@ -44,6 +46,14 @@ class Details extends React.Component {
     });
   }
 
+  toggleModal = () => {
+    this.setState((state) => {
+      return {
+        showModal: !state.showModal,
+      };
+    });
+  };
+
   render() {
     if (this.state.loading) {
       return (
@@ -53,7 +63,15 @@ class Details extends React.Component {
       );
     }
 
-    const { name, animal, breed, description, location, media } = this.state;
+    const {
+      name,
+      animal,
+      breed,
+      description,
+      location,
+      media,
+      showModal,
+    } = this.state;
 
     return (
       <div className="details">
@@ -61,8 +79,18 @@ class Details extends React.Component {
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} - ${breed} - ${location}`}</h2>
+          <button onClick={this.toggleModal}>Adopt {name}</button>
           <p>{description}</p>
         </div>
+        {showModal ? (
+          <Modal>
+            <h1>Do you want to adopt {name} ?</h1>
+            <div className="buttons">
+              <button onClick={this.toggleModal}>Yes</button>
+              <button onClick={this.toggleModal}>No</button>
+            </div>
+          </Modal>
+        ) : null}
       </div>
     );
   }

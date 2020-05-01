@@ -103,11 +103,12 @@ class Results extends React.Component {
   }
 }
 
-function ResultsWithConsumer() {
+function ResultsWithConsumer(props) {
   return (
     <Consumer>
       {(context) => (
         <Results
+          {...props}
           location={context.location}
           animal={context.animal}
           breed={context.breed}

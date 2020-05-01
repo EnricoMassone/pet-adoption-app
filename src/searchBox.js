@@ -80,17 +80,40 @@ const mapDispatchToProps = (dispatch) => ({
     const action = changeLocation(event.target.value);
     dispatch(action);
   },
-
-  handleAnimalChange(event) {
-    const action = changeAnimal(event.target.value);
-    dispatch(action);
-    dispatch(getBreeds());
-  },
-
   handleBreedChange(event) {
     const action = changeBreed(event.target.value);
     dispatch(action);
   },
+  _handleAnimalChange(animal) {
+    const action = changeAnimal(animal);
+    dispatch(action);
+    dispatch(getBreeds());
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
+const mergeProps = (
+  stateProps,
+  { handleLocationChange, handleBreedChange, _handleAnimalChange },
+  ownProps
+) => ({
+  ...stateProps,
+  ...ownProps,
+  handleLocationChange,
+  handleBreedChange,
+  handleAnimalChange(event) {
+    const newAnimal = event.target.value;
+    const animal = stateProps.animal;
+
+    if (newAnimal === animal) {
+      return;
+    } else {
+      _handleAnimalChange(newAnimal);
+    }
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(SearchBox);

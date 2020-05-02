@@ -5,7 +5,6 @@ import Results from "./results";
 import Details from "./details";
 import SearchParams from "./searchParams";
 import petfinder from "petfinder-client";
-import { Provider } from "./searchContext";
 
 const apiClient = petfinder({
   key: process.env.API_KEY,
@@ -13,20 +12,12 @@ const apiClient = petfinder({
 });
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      location: "Seattle, WA",
-      animal: "",
-      breed: "",
-      breeds: [],
-      handleLocationChange: this.handleLocationChange,
-      handleAnimalChange: this.handleAnimalChange,
-      handleBreedChange: this.handleBreedChange,
-      getBreeds: this.getBreeds,
-    };
-  }
+  state = {
+    location: "Seattle, WA",
+    animal: "",
+    breed: "",
+    breeds: [],
+  };
 
   handleLocationChange = (event) => {
     this.setState({
@@ -95,6 +86,8 @@ class App extends React.Component {
   }
 
   render() {
+    const { location, animal, breed, breeds } = this.state;
+
     return (
       <div>
         <header>
@@ -105,13 +98,29 @@ class App extends React.Component {
             </span>
           </Link>
         </header>
-        <Provider value={this.state}>
-          <Router>
-            <Results path="/" />
-            <Details path="/details/:id" />
-            <SearchParams path="/search-params" />
-          </Router>
-        </Provider>
+        <Router>
+          <Results
+            path="/"
+            location={location}
+            animal={animal}
+            breed={breed}
+            breeds={breeds}
+            handleLocationChange={this.handleLocationChange}
+            handleAnimalChange={this.handleAnimalChange}
+            handleBreedChange={this.handleBreedChange}
+          />
+          <Details path="/details/:id" />
+          <SearchParams
+            path="/search-params"
+            location={location}
+            animal={animal}
+            breed={breed}
+            breeds={breeds}
+            handleLocationChange={this.handleLocationChange}
+            handleAnimalChange={this.handleAnimalChange}
+            handleBreedChange={this.handleBreedChange}
+          />
+        </Router>
       </div>
     );
   }

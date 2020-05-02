@@ -2,7 +2,6 @@ import React from "react";
 import Pet from "./pet";
 import petfinder from "petfinder-client";
 import SearchBox from "./searchBox";
-import { Consumer } from "./searchContext";
 
 const api = petfinder({
   key: process.env.API_KEY,
@@ -17,7 +16,6 @@ class Results extends React.Component {
 
   searchPets() {
     const { location, animal, breed } = this.props;
-    console.log(location, animal, breed);
 
     const promise = api.pet.find({
       output: "full",
@@ -60,7 +58,16 @@ class Results extends React.Component {
   }
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, pets } = this.state;
+    const {
+      animal,
+      location,
+      breed,
+      breeds,
+      handleLocationChange,
+      handleAnimalChange,
+      handleBreedChange,
+    } = this.props;
 
     if (isLoading) {
       return (
@@ -72,9 +79,19 @@ class Results extends React.Component {
 
     return (
       <div className="search">
-        <SearchBox onSearch={this.handleSearchFormSubmit} />
-        {this.state.pets.length ? (
-          this.state.pets.map((pet) => {
+        <SearchBox
+          onSearch={this.handleSearchFormSubmit}
+          animal={animal}
+          location={location}
+          breed={breed}
+          breeds={breeds}
+          handleLocationChange={handleLocationChange}
+          handleAnimalChange={handleAnimalChange}
+          handleBreedChange={handleBreedChange}
+        />
+
+        {pets.length ? (
+          pets.map((pet) => {
             let breed;
 
             if (Array.isArray(pet.breeds.breed)) {
@@ -103,19 +120,4 @@ class Results extends React.Component {
   }
 }
 
-function ResultsWithConsumer(props) {
-  return (
-    <Consumer>
-      {(context) => (
-        <Results
-          {...props}
-          location={context.location}
-          animal={context.animal}
-          breed={context.breed}
-        />
-      )}
-    </Consumer>
-  );
-}
-
-export default ResultsWithConsumer;
+export default Results;

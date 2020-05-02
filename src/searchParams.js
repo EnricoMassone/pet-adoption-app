@@ -8,9 +8,28 @@ class SearchParams extends React.Component {
   }
 
   render() {
+    const {
+      location,
+      animal,
+      breed,
+      breeds,
+      handleLocationChange,
+      handleAnimalChange,
+      handleBreedChange,
+    } = this.props;
+
     return (
       <div className="search-route">
-        <SearchBox onSearch={this.handleSearchFormSubmit} />
+        <SearchBox
+          onSearch={this.handleSearchFormSubmit}
+          location={location}
+          animal={animal}
+          breed={breed}
+          breeds={breeds}
+          handleLocationChange={handleLocationChange}
+          handleAnimalChange={handleAnimalChange}
+          handleBreedChange={handleBreedChange}
+        />
       </div>
     );
   }

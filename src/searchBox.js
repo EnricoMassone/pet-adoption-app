@@ -9,7 +9,7 @@ class SearchBox extends React.Component {
 
   render() {
     const {
-      location,
+      cityState,
       animal,
       breed,
       breeds,
@@ -25,7 +25,7 @@ class SearchBox extends React.Component {
             Location
             <input
               id="location"
-              value={location}
+              value={cityState}
               placeholder="Location"
               onChange={handleLocationChange}
             ></input>

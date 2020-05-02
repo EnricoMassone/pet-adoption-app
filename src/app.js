@@ -86,6 +86,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.location);
     const { location, animal, breed, breeds } = this.state;
 
     return (
@@ -101,7 +102,7 @@ class App extends React.Component {
         <Router>
           <Results
             path="/"
-            location={location}
+            cityState={location}
             animal={animal}
             breed={breed}
             breeds={breeds}
@@ -112,7 +113,7 @@ class App extends React.Component {
           <Details path="/details/:id" />
           <SearchParams
             path="/search-params"
-            location={location}
+            cityState={location}
             animal={animal}
             breed={breed}
             breeds={breeds}

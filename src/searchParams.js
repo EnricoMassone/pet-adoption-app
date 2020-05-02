@@ -9,7 +9,7 @@ class SearchParams extends React.Component {
 
   render() {
     const {
-      location,
+      cityState,
       animal,
       breed,
       breeds,
@@ -22,7 +22,7 @@ class SearchParams extends React.Component {
       <div className="search-route">
         <SearchBox
           onSearch={this.handleSearchFormSubmit}
-          location={location}
+          cityState={cityState}
           animal={animal}
           breed={breed}
           breeds={breeds}

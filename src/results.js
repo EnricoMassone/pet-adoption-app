@@ -15,11 +15,11 @@ class Results extends React.Component {
   };
 
   searchPets() {
-    const { location, animal, breed } = this.props;
+    const { cityState, animal, breed } = this.props;
 
     const promise = api.pet.find({
       output: "full",
-      location,
+      location: cityState,
       animal,
       breed,
     });
@@ -61,7 +61,7 @@ class Results extends React.Component {
     const { isLoading, pets } = this.state;
     const {
       animal,
-      location,
+      cityState,
       breed,
       breeds,
       handleLocationChange,
@@ -82,7 +82,7 @@ class Results extends React.Component {
         <SearchBox
           onSearch={this.handleSearchFormSubmit}
           animal={animal}
-          location={location}
+          cityState={cityState}
           breed={breed}
           breeds={breeds}
           handleLocationChange={handleLocationChange}

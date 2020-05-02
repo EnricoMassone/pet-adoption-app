@@ -86,7 +86,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.location);
     const { location, animal, breed, breeds } = this.state;
 
     return (
